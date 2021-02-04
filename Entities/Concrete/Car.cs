@@ -11,7 +11,7 @@ namespace Entities
         public int ColorID { get; set; }
         public DateTime ModelYear { get; set; }
         public int DailyPrice { get; set; }
-        public string Desciption { get; set; }
+        public string Description { get; set; }
        
 
     }

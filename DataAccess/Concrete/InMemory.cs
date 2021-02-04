@@ -15,12 +15,12 @@ namespace DataAccess.Concrete
         public InMemory()
         {
             _car = new List<Car> {
-            new Car{CarID=1, BrandID=1, ColorID=1, DailyPrice=150, Desciption="New car with us", ModelYear=new DateTime(2015)},
-            new Car{CarID=2, BrandID=1, ColorID=4, DailyPrice=175, Desciption="New car", ModelYear=new DateTime(2016)},
-            new Car{CarID=3, BrandID=2, ColorID=5, DailyPrice=225, Desciption="New car", ModelYear=new DateTime(2015)},
-            new Car{CarID=4, BrandID=3, ColorID=1, DailyPrice=275, Desciption="New car", ModelYear=new DateTime(2018)},
-            new Car{CarID=5, BrandID=4, ColorID=2, DailyPrice=300, Desciption="New car", ModelYear=new DateTime(2019)},
-            new Car{CarID=6, BrandID=4, ColorID=3, DailyPrice=350, Desciption="New car", ModelYear=new DateTime(2019)},
+            new Car{CarID=1, BrandID=1, ColorID=1, DailyPrice=150, Description="New car with us", ModelYear=new DateTime(2015)},
+            new Car{CarID=2, BrandID=1, ColorID=4, DailyPrice=175, Description="New car", ModelYear=new DateTime(2016)},
+            new Car{CarID=3, BrandID=2, ColorID=5, DailyPrice=225, Description="New car", ModelYear=new DateTime(2015)},
+            new Car{CarID=4, BrandID=3, ColorID=1, DailyPrice=275, Description="New car", ModelYear=new DateTime(2018)},
+            new Car{CarID=5, BrandID=4, ColorID=2, DailyPrice=300, Description="New car", ModelYear=new DateTime(2019)},
+            new Car{CarID=6, BrandID=4, ColorID=3, DailyPrice=350, Description="New car", ModelYear=new DateTime(2019)},
 
             };
         }
@@ -65,7 +65,7 @@ namespace DataAccess.Concrete
             updatedCar.BrandID = car.BrandID;
             updatedCar.ColorID = car.ColorID;
             updatedCar.DailyPrice = car.DailyPrice;
-            updatedCar.Desciption = car.Desciption;
+            updatedCar.Description = car.Description;
             updatedCar.ModelYear = car.ModelYear;
 
         }

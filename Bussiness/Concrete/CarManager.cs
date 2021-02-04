@@ -32,9 +32,10 @@ namespace Bussiness.Concrete
 
         public void Add(Car car)
         {
-            if (car.Desciption.Length>=2 && car.DailyPrice>0)
+            if (car.Description.Length>=2 && car.DailyPrice>0)
             {
                 _iCarDal.Add(car);
+            
             }
             else { Console.WriteLine("Yanlış girdi"); }      
 
