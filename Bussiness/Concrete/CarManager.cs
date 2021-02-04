@@ -20,6 +20,25 @@ namespace Bussiness.Concrete
            return _iCarDal.GetAll();
         }
 
+        public List<Car> GetCarsByBrandId(int brandid)
+        {
+            return _iCarDal.GetAll(p => p.BrandID == brandid);
+        }
 
+        public List<Car> GetCarsByColorId(int colorid)
+        {
+            return _iCarDal.GetAll(p => p.ColorID == colorid);
+        }
+
+        public void Add(Car car)
+        {
+            if (car.Desciption.Length>=2 && car.DailyPrice>0)
+            {
+                _iCarDal.Add(car);
+            }
+            else { Console.WriteLine("Yanlış girdi"); }      
+
+
+        }
     }
 }
