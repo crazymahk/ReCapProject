@@ -30,6 +30,15 @@ namespace DataAccess.Concrete
                 context.SaveChanges();
             }
         }
+        public void DeleteYilmaz(Car entity)
+        {
+            using (yilmazContext context = new yilmazContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
 
         public Car Get(Expression<Func<Car, bool>> filter)
         {

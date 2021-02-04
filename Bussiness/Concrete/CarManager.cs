@@ -35,11 +35,19 @@ namespace Bussiness.Concrete
             if (car.Description.Length>=2 && car.DailyPrice>0)
             {
                 _iCarDal.Add(car);
-            
+                Console.WriteLine(car.CarID + " Eklendi");
+
             }
             else { Console.WriteLine("Yanlış girdi"); }      
 
 
         }
+        public void DeleteByYilmaz(Car car)
+        {
+            _iCarDal.Delete(car);
+            Console.WriteLine(car.CarID + "Silindi" );
+
+        }
+
     }
 }
