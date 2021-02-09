@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core;
+using DataAccess.Abstract;
 using Entities;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,63 +11,20 @@ using System.Text;
 
 namespace DataAccess.Concrete
 {
-    public class EFCarDal : ICarDal
+    public class EFCarDal : EfEntityRepositoryBase<Car, yilmazContext>, ICarDal
     {
-        public void Add(Car entity)
+        public List<CarDto> GetCarDetailDtos()
         {
-            using (yilmazContext context = new yilmazContext())
+            using (yilmazContext Context = new yilmazContext())
             {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
+                var result = from ca in Context.Car
+                             join co in Context.Brand on ca.BrandID equals co.BrandID join cosl in Context.Color on ca.ColorID equals cosl.ColorID
+                             select new CarDto {CarID =ca.CarID ,CarName= ca.CarName,BrandName=co.BrandName,ColorName=cosl.ColorName,DailyPrice=ca.DailyPrice   };
+
+                return result.ToList();
             }
         }
 
-        public void Delete(Car entity)
-        {
-            using (yilmazContext context = new yilmazContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-        public void DeleteYilmaz(Car entity)
-        {
-            using (yilmazContext context = new yilmazContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public Car Get(Expression<Func<Car, bool>> filter)
-        {
-            using (yilmazContext context = new yilmazContext())
-            {
-                return context.Set<Car>().SingleOrDefault(filter);
-            }
-        }
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
-        {
-            using (yilmazContext context = new yilmazContext())
-            {
-                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
-            }
-
-            
-        }
-
-        public void Update(Car entity)
-        {
-            using (yilmazContext context = new yilmazContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
+ 
     }
 }

@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <UserSecretsId>fc6b4f58-c048-4ccd-93cf-cfa3264bfefe</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
   </ItemGroup>
 
 </Project>

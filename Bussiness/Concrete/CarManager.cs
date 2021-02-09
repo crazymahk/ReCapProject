@@ -1,6 +1,7 @@
 ﻿using Bussiness.Abstract;
 using DataAccess.Abstract;
 using Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,12 +43,20 @@ namespace Bussiness.Concrete
 
 
         }
-        public void DeleteByYilmaz(Car car)
+
+        public void Delete(Car car)
         {
             _iCarDal.Delete(car);
-            Console.WriteLine(car.CarID + "Silindi" );
-
         }
 
+        public void Update(Car car)
+        {
+       
+        }
+
+        public List<CarDto> GetCarsDdetails()
+        {
+            return _iCarDal.GetCarDetailDtos();
+        }
     }
 }
