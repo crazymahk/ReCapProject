@@ -1,4 +1,5 @@
 ﻿using Bussiness.Abstract;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities;
 using System;
@@ -26,9 +27,9 @@ namespace Bussiness.Concrete
             _icolorDal.Delete(renk);
         }
 
-        public List<Color> GetAll()
+        public IDataResult <List<Color>> GetAll()
         {
-            return _icolorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_icolorDal.GetAll());
         }
 
         public void Update(Color renk)

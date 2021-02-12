@@ -21,7 +21,7 @@ namespace ConsoleUI
             //  carManager.GetCarsByBrandId(1);
 
             
-            foreach (var item in carManager.GetCarsDdetails())
+            foreach (var item in carManager.GetCarsDdetails().Data)
             {
                 Console.WriteLine(item.BrandName+" "+ item.CarName+"  " +item.ColorName+ " " + item.DailyPrice);
             }
@@ -30,7 +30,7 @@ namespace ConsoleUI
 
         private static void GETBYBrandid(CarManager carManager , int a)
         {
-            foreach (var item in carManager.GetCarsByBrandId(a))
+            foreach (var item in carManager.GetCarsByBrandId(1).Data)
             {
                 Console.WriteLine(item.CarID + " " + item.CarName + " " + item.DailyPrice +item.Description);
             }
@@ -47,7 +47,7 @@ namespace ConsoleUI
 
         private static void BütünArabalarıGetir(CarManager carManager)
         {
-            foreach (var item in carManager.GetAll())
+            foreach (var item in carManager.GetAll().Data)
             {
                 Console.WriteLine(item.CarID + "  numaralı " + item.CarName + " araç günclük ücreti " + item.DailyPrice);
             }

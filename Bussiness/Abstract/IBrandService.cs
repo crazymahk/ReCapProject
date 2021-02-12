@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Core.Utilities.Result;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Bussiness.Abstract
     public interface IBrandService
     {
 
-        List<Brand> GetAll();
-        void Add(Brand marka);
-        void Delete(Brand marka);
+        IDataResult<List<Brand>> GetAll();
+        IResult Add(Brand marka);
+        IResult Delete(Brand marka);
         void Update(Brand marka);
 
     }

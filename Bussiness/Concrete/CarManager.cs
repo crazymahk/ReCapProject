@@ -1,4 +1,5 @@
 ﻿using Bussiness.Abstract;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities;
 using Entities.Concrete;
@@ -16,22 +17,22 @@ namespace Bussiness.Concrete
             _iCarDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-           return _iCarDal.GetAll();
+           return new SuccessDataResult<List<Car>>(_iCarDal.GetAll());
         }
 
-        public List<Car> GetCarsByBrandId(int brandid)
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandid)
         {
-            return _iCarDal.GetAll(p => p.BrandID == brandid);
+            return new  SuccessDataResult<List<Car>>(_iCarDal.GetAll(p => p.BrandID == brandid));
         }
 
-        public List<Car> GetCarsByColorId(int colorid)
+        public IDataResult<List<Car>> GetCarsByColorId(int colorid)
         {
-            return _iCarDal.GetAll(p => p.ColorID == colorid);
+            return new SuccessDataResult<List<Car>>( _iCarDal.GetAll(p => p.ColorID == colorid));
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length>=2 && car.DailyPrice>0)
             {
@@ -39,7 +40,7 @@ namespace Bussiness.Concrete
                 Console.WriteLine(car.CarID + " Eklendi");
 
             }
-            else { Console.WriteLine("Yanlış girdi"); }      
+            return new Result(false, "Message added");   
 
 
         }
@@ -54,9 +55,9 @@ namespace Bussiness.Concrete
        
         }
 
-        public List<CarDto> GetCarsDdetails()
+        public IDataResult<List<CarDto>> GetCarsDdetails()
         {
-            return _iCarDal.GetCarDetailDtos();
+            return new SuccessDataResult<List<CarDto>>(_iCarDal.GetCarDetailDtos());
         }
     }
 }
