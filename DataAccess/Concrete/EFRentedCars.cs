@@ -26,12 +26,11 @@ namespace DataAccess.Concrete
                              select new RentCarDto
                              {
                                  Id = re.CarId,
-                                 CarName = ca.CarName,
-                                 CustomerName = cus.CompanyName,
+                             
                                  CarId = ca.CarID,
                                  RentDate = re.RentDate,
                                  ReturnDate = re.ReturnDate,
-                                 UserName = us.FirstName + " " + us.LastName
+                                
                              };
 
                 return result.ToList();
