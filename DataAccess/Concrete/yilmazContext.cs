@@ -1,5 +1,6 @@
 ﻿
 using Entities;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace DataAccess.Concrete
         public DbSet<Car> Car { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Color> Color { get; set; }
+        public DbSet<User> User { get; set; }
 
+        public DbSet<Customer> Customer { get; set; }
+
+
+        public DbSet<RentedCars> Rentals  { get; set; }
     }
 }

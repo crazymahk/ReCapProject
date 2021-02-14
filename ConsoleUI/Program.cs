@@ -1,6 +1,7 @@
 ﻿using Bussiness.Concrete;
 using DataAccess.Concrete;
 using Entities;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -13,26 +14,54 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EFCarDal());
             ColorManager colorManager = new ColorManager(new EFColor());
             BrandManager brandManager = new BrandManager(new EFBrand());
+            UserManager userManager = new UserManager(new EFUser());
+            CustomerManager customerManager = new CustomerManager(new EFCustomer());
+
 
             //BütünArabalarıGetir(carManager);
 
             //  GETBYBrandid(carManager,3);
 
             //  carManager.GetCarsByBrandId(1);
+            // AllCarDetails(carManager);
 
+          
+
+            //BütünKullancıİsimleriniGetirme(userManager);
+           //  BütünMüşteriİsimleriniGetirme(customerManager);
             
-            foreach (var item in carManager.GetCarsDdetails().Data)
-            {
-                Console.WriteLine(item.BrandName+" "+ item.CarName+"  " +item.ColorName+ " " + item.DailyPrice);
-            }
-           // brandManager.Update(new Brand() {BrandID=4,BrandName="Mazda" });
+
+
         }
 
-        private static void GETBYBrandid(CarManager carManager , int a)
+        private static void BütünKullancıİsimleriniGetirme(UserManager userManager)
+        {
+            foreach (var item in userManager.GetAll().Data)
+            {
+                Console.WriteLine(item.FirstName+"  "+item.LastName);
+            }
+        }
+        private static void BütünMüşteriİsimleriniGetirme(CustomerManager cusManager)
+        {
+            foreach (var item in cusManager.GetAll().Data)
+            {
+                Console.WriteLine(item.CompanyName);
+            }
+        }
+
+        private static void AllCarDetails(CarManager carManager)
+        {
+            foreach (var item in carManager.GetCarsDdetails().Data)
+            {
+                Console.WriteLine(item.BrandName + " " + item.CarName + "  " + item.ColorName + " " + item.DailyPrice);
+            }
+        }
+
+        private static void GETBYBrandid(CarManager carManager, int a)
         {
             foreach (var item in carManager.GetCarsByBrandId(1).Data)
             {
-                Console.WriteLine(item.CarID + " " + item.CarName + " " + item.DailyPrice +item.Description);
+                Console.WriteLine(item.CarID + " " + item.CarName + " " + item.DailyPrice + item.Description);
             }
         }
 
@@ -43,6 +72,8 @@ namespace ConsoleUI
             //ArabaDeneme(carManager);
             //RenkDeneme(colorManager);
             //MarkaDeneme(brandManager);
+          //  USerDeneme(userManager);
+           // CustomerDeneme(customerManager);
         }
 
         private static void BütünArabalarıGetir(CarManager carManager)
@@ -53,7 +84,7 @@ namespace ConsoleUI
             }
         }
 
-        
+
         private static void ArabaDeneme(CarManager carManager)
         {
 
@@ -69,7 +100,7 @@ namespace ConsoleUI
         private static void MarkaDeneme(BrandManager brandManager)
         {
 
-            brandManager.Add(new Brand() {BrandID=1,BrandName="Renault" });
+            brandManager.Add(new Brand() { BrandID = 1, BrandName = "Renault" });
             brandManager.Add(new Brand() { BrandID = 2, BrandName = "BMW" });
             brandManager.Add(new Brand() { BrandID = 3, BrandName = "Mercedes" });
             brandManager.Add(new Brand() { BrandID = 4, BrandName = "Mazda" });
@@ -81,6 +112,24 @@ namespace ConsoleUI
             colorManager.Add(new Color() { ColorID = 2, ColorName = "Siyah" });
             colorManager.Add(new Color() { ColorID = 3, ColorName = "Kırmızı" });
             colorManager.Add(new Color() { ColorID = 4, ColorName = "MAVİ" });
+        }
+
+
+        private static void USerDeneme(UserManager userManager)
+        {
+            userManager.Add(new User() { Id = 1, FirstName = "Yılmaz", LastName = "Uçar", Email = "aaa@gmail.com", Password = "11111" });
+            userManager.Add(new User() { Id = 2, FirstName = "Emrah", LastName = "öz", Email = "emrhz@gmail.com", Password = "2222" });
+            userManager.Add(new User() { Id = 3, FirstName = "Mert", LastName = "Kısaa", Email = "xx_417@gmail.com", Password = "3333" });
+            userManager.Add(new User() { Id = 4, FirstName = "Hafini", LastName = "Uzun", Email = "crazy451@gmail.com", Password = "4444" });
+            userManager.Add(new User() { Id = 5, FirstName = "Gamze", LastName = "Yoks", Email = "asad@gmail.com", Password = "55555" });
+        }
+
+        private static void CustomerDeneme(CustomerManager customerManager)
+        {
+            customerManager.Add(new Customer() { CompanyName = "Apple", UserId = 1 ,CustomerId=1});
+            customerManager.Add(new Customer() { CompanyName = "Samsung", UserId = 2,CustomerId=2 });
+            customerManager.Add(new Customer() { CompanyName = "Dell", UserId = 3 ,CustomerId=3});
+            customerManager.Add(new Customer() { CompanyName = "Karaambar komyuoncluar", UserId = 4 ,CustomerId=4});
         }
     }
 }

@@ -19,17 +19,21 @@ namespace Bussiness.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-           return new SuccessDataResult<List<Car>>(_iCarDal.GetAll());
+            if (DateTime.Now.Hour == 21)
+            {
+                return new ErrorDataResult<List<Car>>("Bakım Arası");
+            }
+            return new SuccessDataResult<List<Car>>(_iCarDal.GetAll());
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandid)
         {
-            return new  SuccessDataResult<List<Car>>(_iCarDal.GetAll(p => p.BrandID == brandid));
+            return new  DataResult<List<Car>>(_iCarDal.GetAll(p => p.BrandID == brandid),true);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int colorid)
         {
-            return new SuccessDataResult<List<Car>>( _iCarDal.GetAll(p => p.ColorID == colorid));
+            return new DataResult<List<Car>>( _iCarDal.GetAll(p => p.ColorID == colorid),true);
         }
 
         public IResult Add(Car car)
