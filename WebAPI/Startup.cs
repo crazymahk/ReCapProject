@@ -37,8 +37,9 @@ namespace WebAPI
             services.AddSingleton<IRentedCarsService, RentedCarsManager>();
             services.AddSingleton<IRentedCar, EFRentedCars>();
 
-
+            services.AddCors();
         }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,7 +48,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyOrigin());
             app.UseHttpsRedirection();
 
             app.UseRouting();
